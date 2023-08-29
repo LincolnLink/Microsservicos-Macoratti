@@ -1,6 +1,6 @@
 # Microsservicos-Macoratti
 
- - Estudo e pesquisa sobre micros serviços com dot.net core!
+ - Estudo e pesquisa sobre micros serviços com ASP.NET 7 Core e Docker!
 
 # Criando o projeto web api na pasta DemoMicrosservice
 
