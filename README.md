@@ -46,7 +46,7 @@
 
 <blockquete>
 
-                docker container run  
+        docker container run  
 
 </blockquete>
 
@@ -117,6 +117,8 @@
  - -t demomicroservice: Informa para marcar(ou nomear) a imagem como demomicroservice.
 
  - O parêmetro final(.): Informa qual diretorio usar para localizar o dockerfile(. define o diretorio atual).
+
+ - 
 
  
 

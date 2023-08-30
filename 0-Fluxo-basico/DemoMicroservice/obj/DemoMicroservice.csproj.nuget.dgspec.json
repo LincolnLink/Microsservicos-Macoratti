@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projetos e Estudos\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj": {}
+    "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj": {}
   },
   "projects": {
-    "E:\\Projetos e Estudos\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj": {
+    "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projetos e Estudos\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
+        "projectUniqueName": "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
         "projectName": "DemoMicroservice",
-        "projectPath": "E:\\Projetos e Estudos\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
+        "projectPath": "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
         "packagesPath": "C:\\Users\\link7\\.nuget\\packages\\",
-        "outputPath": "E:\\Projetos e Estudos\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\obj\\",
+        "outputPath": "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -31,3 +31,36 @@ E:\Projetos e Estudos\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\o
 E:\Projetos e Estudos\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.pdb
 E:\Projetos e Estudos\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.genruntimeconfig.cache
 E:\Projetos e Estudos\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\ref\DemoMicroservice.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\appsettings.Development.json
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\appsettings.json
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\DemoMicroservice.exe
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\DemoMicroservice.deps.json
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\DemoMicroservice.runtimeconfig.json
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\DemoMicroservice.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\DemoMicroservice.pdb
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.csproj.AssemblyReference.cache
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.GeneratedMSBuildEditorConfig.editorconfig
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.AssemblyInfoInputs.cache
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.AssemblyInfo.cs
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.csproj.CoreCompileInputs.cache
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.MvcApplicationPartsAssemblyInfo.cs
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.MvcApplicationPartsAssemblyInfo.cache
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\staticwebassets\msbuild.DemoMicroservice.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\staticwebassets\msbuild.build.DemoMicroservice.props
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.DemoMicroservice.props
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.DemoMicroservice.props
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\staticwebassets.build.json
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\staticwebassets.development.json
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\scopedcss\bundle\DemoMicroservice.styles.css
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.csproj.CopyComplete
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\refint\DemoMicroservice.dll
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.pdb
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\DemoMicroservice.genruntimeconfig.cache
+C:\Microsservicos-Macoratti\0 Fluxo-basico\DemoMicroservice\obj\Debug\net7.0\ref\DemoMicroservice.dll
