@@ -469,33 +469,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\link7\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Lincoln\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
+      "projectUniqueName": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\0-Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
       "projectName": "DemoMicroservice",
-      "projectPath": "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
-      "packagesPath": "C:\\Users\\link7\\.nuget\\packages\\",
-      "outputPath": "C:\\Microsservicos-Macoratti\\0 Fluxo-basico\\DemoMicroservice\\obj\\",
+      "projectPath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\0-Fluxo-basico\\DemoMicroservice\\DemoMicroservice.csproj",
+      "packagesPath": "C:\\Users\\Lincoln\\.nuget\\packages\\",
+      "outputPath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\0-Fluxo-basico\\DemoMicroservice\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\link7\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Lincoln\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -542,7 +533,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
