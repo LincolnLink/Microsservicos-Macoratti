@@ -2,7 +2,19 @@
 
  - Estudo e pesquisa sobre micros serviços com ASP.NET 7 Core e Docker!
 
+ - "Instalando o Linux no windown"
+
+<blockquete>
+
+                wsl --install
+
+</blockquete>
+
 # Criando o projeto web api na pasta DemoMicrosservice
+
+ - Para evitar erro, cria uma solução em branco, depois cria um projeto webapi como exemplo.
+
+ - Quando for cria o projeto WebApi, seleciona a opção Dcoker para gerar o dockerfile sozinho.
 
 <blockquete>
 
@@ -110,7 +122,7 @@
 
 <blockquete>
 
-        docker build -t demomicroservice .
+        docker build -t DemoMicroservice:0.1 -f DemoMicroservice/Dockerfile
 
 </blockquete>
 
@@ -118,10 +130,34 @@
 
  - O parêmetro final(.): Informa qual diretorio usar para localizar o dockerfile(. define o diretorio atual).
 
+ ### Criando um container
+
+ - digita o comando "docker run", cria um nome para o container, e informa a porta, depois informa o nome da imagem.
+
+<blockquete>
+
+        docker run --name webcontainer -p 5000:80 demomicroservice:0.1
+ 
+</blockquete>
+
  - 
 
- 
+<blockquete>
 
+ 
+</blockquete>
+ - 
+
+<blockquete>
+
+ 
+</blockquete>
+ - 
+
+<blockquete>
+
+ 
+</blockquete>
 
 
 

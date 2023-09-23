@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "XFHYzNXpzKEOxM2BF8ELcVQOVapkwgk6keF+MIJU6zQBx3JgMAjM1sZWC8JxQfbCzPqIV27tiqoMG/2IKaXxDQ==",
+  "success": true,
+  "projectFilePath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\0-Fluxo-basico\\DemoMicroservice\\DemoMicroservice\\DemoMicroservice.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+  ],
+  "logs": []
+}
