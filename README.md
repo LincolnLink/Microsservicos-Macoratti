@@ -140,24 +140,186 @@
  
 </blockquete>
 
+# Docker sem o arquivo "dockerfile"
+
+ - Cria a solução depois o projeto.
+
+ - Digite o comando para instalar a extenção que vai fazer executar o docker sem arquivo dockerfile.
+
+<blockquete>
+
+                dotnet add package Microsoft.NET.Build.Containers
+ 
+</blockquete>
+
+ - No csproj, informa que foi adicionado o pacote.  
+
+<blockquete>
+
+                <ItemGroup>
+                <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.401" />
+                </ItemGroup>
+ 
+</blockquete>
+
+ - Executa o comando que cria a imagem, usando esse pacote.
+
+<blockquete>
+
+                dotnet publish --os linux --arch x64 -p:PublishProfile=DefaultContainer
+ 
+</blockquete>
+
+ - Assim é criada a imagem.
+ - Depois disso cria o container.
+
+<blockquete>
+
+                docker run --name testecontainer -p 5000:86 projeto01:1.0.0
+ 
+</blockquete>
+
+- Caminho do site: http://localhost:5000/weatherforecast
+
+- No arquivo csproj, pode por a configuração dentro da tag "PropertyGroup", para reduzir o comando.
+
+<blockquete>
+
+                <PublishProfile>DefaultContainer</PublishProfile>
+                <ContainerImageName>projeto01</ContainerImageName>
+                <ContainerImageTag>1.0.0</ContainerImageTag>
+ 
+</blockquete>
+
+ - O comando que cria a imagem fica curto
+
+<blockquete>
+
+                dotnet publish --os linux --arch x64
+ 
+</blockquete>
+
+ - Pode definir a imagem base.
+
+<blockquete>
+
+                <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:7.0-alpine</ContainerBaseImage>
+ 
+</blockquete>
+
+# NET - Criando Microsserviços : API Catalogo com MongoDB - I
+
+ ### Objetivo:
+
+ - Cria um API para um gerenciar produtos como um microsserviço
+
+ ### Pré-requisitos: 
+ 
+ - Noções de C#, ASP .NET Core e Docker
+
+ ### Cenário:
+
+ - Criar uma Asp.Net Core Web API.
+ - Segindo o estilo REST(API REST).
+ - Realizar consultas e operações CRUD em produtos.
+ - Usar banco de dados NoSQL MongoDB em um contêiner Docker.
+ - Usar o padrão repositório.
+ - Conteinerizar a API com o MongoDB usando o Docker Compose.
+
+ ### MongoDB
+
+    SGBD relacional  | MongoDB 
+ __________________________________ 
+    Table            | Collection
+    Row              | Document
+    Column           | Field
+
+ - Instala a extenção do mongoDB
+
+ - 
+
+<blockquete>
+
+                MongoDB.Driver
+ 
+</blockquete>
+
+ - Cria a pasta "Entities" e a classe "Product".
+
+<blockquete>
+
+                public class Product
+                {
+                [BsonId]
+                [BsonRepresentation(BsonType.ObjectId)]
+                public string Id { get; set; }
+
+                [BsonElement("Name")]
+                public string Name { get; set; }
+                public string Category { get; set; }
+                public string Description { get; set; }
+                public string Image { get; set; }
+                public decimal Price { get; set; }
+
+                }
+ 
+</blockquete>
+
+ - Cria uma pasta chamada "Data" e uma Interface chamada "ICatalogContext". 
+
+<blockquete>
+
+                public interface ICatalogContext
+                {
+                        IMongoCollection<Product> Products { get; }
+                }
+ 
+</blockquete>
+
+ - Cria um classe chamada "CatalogContext" na pasta "Data" para implementar a interface.
+
+ - Configurando a connection string, nome do banco, e nome da coleção(Tabela)
+
+<blockquete>
+
+        public class CatalogContext : ICatalogContext
+        {
+                public CatalogContext(IConfiguration configuration)
+                {
+                        // Configurando a conexionstring
+                        var client = new MongoClient(configuration.GetValue<string>
+                        ("DatabaseSettings:ConnectionString"));
+
+                        // Nome do banco de dados
+                        var database = client.GetDatabase(configuration.GetValue<string>
+                        ("DatabaseSettings:DatabaseName"));
+
+                        // Nome da coleção
+                        Products = database.GetCollection<Product>(configuration.GetValue<string>
+                        ("DatabaseSettings:CollectionName"));
+
+                        //CatalogContextSeed.SeedData(Products);
+                }
+
+                public IMongoCollection<Product> Products { get; }
+        }
+ 
+</blockquete>
+
  - 
 
 <blockquete>
 
  
 </blockquete>
+
  - 
 
 <blockquete>
 
  
 </blockquete>
- - 
 
-<blockquete>
-
- 
-</blockquete>
 
 
 

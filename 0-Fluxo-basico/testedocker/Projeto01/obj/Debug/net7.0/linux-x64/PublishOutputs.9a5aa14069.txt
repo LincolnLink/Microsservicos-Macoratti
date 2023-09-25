@@ -1,0 +1,7 @@
+P:\Projetos e Estudos\Microsservicos-Macoratti\0-Fluxo-basico\testedocker\Projeto01\bin\Debug\net7.0\linux-x64\publish\Projeto01
+P:\Projetos e Estudos\Microsservicos-Macoratti\0-Fluxo-basico\testedocker\Projeto01\bin\Debug\net7.0\linux-x64\publish\appsettings.Development.json
+P:\Projetos e Estudos\Microsservicos-Macoratti\0-Fluxo-basico\testedocker\Projeto01\bin\Debug\net7.0\linux-x64\publish\appsettings.json
+P:\Projetos e Estudos\Microsservicos-Macoratti\0-Fluxo-basico\testedocker\Projeto01\bin\Debug\net7.0\linux-x64\publish\Projeto01.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\0-Fluxo-basico\testedocker\Projeto01\bin\Debug\net7.0\linux-x64\publish\Projeto01.deps.json
+P:\Projetos e Estudos\Microsservicos-Macoratti\0-Fluxo-basico\testedocker\Projeto01\bin\Debug\net7.0\linux-x64\publish\Projeto01.runtimeconfig.json
+P:\Projetos e Estudos\Microsservicos-Macoratti\0-Fluxo-basico\testedocker\Projeto01\bin\Debug\net7.0\linux-x64\publish\Projeto01.pdb

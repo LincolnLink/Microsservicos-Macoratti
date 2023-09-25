@@ -1,0 +1,193 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "Microsoft.NET.Build.Containers/7.0.401": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.Build.Containers.props": {},
+          "build/Microsoft.NET.Build.Containers.targets": {}
+        }
+      }
+    },
+    "net7.0/linux-x64": {
+      "Microsoft.NET.Build.Containers/7.0.401": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.Build.Containers.props": {},
+          "build/Microsoft.NET.Build.Containers.targets": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.NET.Build.Containers/7.0.401": {
+      "sha512": "m4G5rXJsVTrL1EXdrJYtwpkfRimGsPIUYWKRNKpxnS71YlAmi8oiZoHu+4vXoXjeWlSEkotIPeL9YjzP65WtKQ==",
+      "type": "package",
+      "path": "microsoft.net.build.containers/7.0.401",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "build/Microsoft.NET.Build.Containers.props",
+        "build/Microsoft.NET.Build.Containers.targets",
+        "containerize/Microsoft.DotNet.Cli.Utils.dll",
+        "containerize/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "containerize/Microsoft.Extensions.Configuration.Binder.dll",
+        "containerize/Microsoft.Extensions.Configuration.dll",
+        "containerize/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "containerize/Microsoft.Extensions.DependencyInjection.dll",
+        "containerize/Microsoft.Extensions.DependencyModel.dll",
+        "containerize/Microsoft.Extensions.Logging.Abstractions.dll",
+        "containerize/Microsoft.Extensions.Logging.Configuration.dll",
+        "containerize/Microsoft.Extensions.Logging.Console.dll",
+        "containerize/Microsoft.Extensions.Logging.dll",
+        "containerize/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
+        "containerize/Microsoft.Extensions.Options.dll",
+        "containerize/Microsoft.Extensions.Primitives.dll",
+        "containerize/Microsoft.NET.Build.Containers.dll",
+        "containerize/Newtonsoft.Json.dll",
+        "containerize/NuGet.Common.dll",
+        "containerize/NuGet.Configuration.dll",
+        "containerize/NuGet.DependencyResolver.Core.dll",
+        "containerize/NuGet.Frameworks.dll",
+        "containerize/NuGet.LibraryModel.dll",
+        "containerize/NuGet.Packaging.dll",
+        "containerize/NuGet.ProjectModel.dll",
+        "containerize/NuGet.Protocol.dll",
+        "containerize/NuGet.Versioning.dll",
+        "containerize/System.CommandLine.dll",
+        "containerize/Valleysoft.DockerCredsProvider.dll",
+        "containerize/containerize.dll",
+        "containerize/containerize.runtimeconfig.json",
+        "microsoft.net.build.containers.7.0.401.nupkg.sha512",
+        "microsoft.net.build.containers.nuspec",
+        "tasks/net472/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "tasks/net472/Microsoft.Extensions.DependencyInjection.dll",
+        "tasks/net472/Microsoft.Extensions.DependencyModel.dll",
+        "tasks/net472/Microsoft.Extensions.Logging.Abstractions.dll",
+        "tasks/net472/Microsoft.Extensions.Logging.dll",
+        "tasks/net472/Microsoft.Extensions.Options.dll",
+        "tasks/net472/Microsoft.Extensions.Primitives.dll",
+        "tasks/net472/Microsoft.NET.Build.Containers.dll",
+        "tasks/net472/Newtonsoft.Json.dll",
+        "tasks/net472/NuGet.Common.dll",
+        "tasks/net472/NuGet.Configuration.dll",
+        "tasks/net472/NuGet.DependencyResolver.Core.dll",
+        "tasks/net472/NuGet.Frameworks.dll",
+        "tasks/net472/NuGet.LibraryModel.dll",
+        "tasks/net472/NuGet.Packaging.Core.dll",
+        "tasks/net472/NuGet.Packaging.dll",
+        "tasks/net472/NuGet.ProjectModel.dll",
+        "tasks/net472/NuGet.Protocol.dll",
+        "tasks/net472/NuGet.Versioning.dll",
+        "tasks/net7.0/Microsoft.DotNet.Cli.Utils.dll",
+        "tasks/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "tasks/net7.0/Microsoft.Extensions.DependencyInjection.dll",
+        "tasks/net7.0/Microsoft.Extensions.DependencyModel.dll",
+        "tasks/net7.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "tasks/net7.0/Microsoft.Extensions.Logging.dll",
+        "tasks/net7.0/Microsoft.Extensions.Options.dll",
+        "tasks/net7.0/Microsoft.Extensions.Primitives.dll",
+        "tasks/net7.0/Microsoft.NET.Build.Containers.deps.json",
+        "tasks/net7.0/Microsoft.NET.Build.Containers.dll",
+        "tasks/net7.0/Newtonsoft.Json.dll",
+        "tasks/net7.0/NuGet.Common.dll",
+        "tasks/net7.0/NuGet.Configuration.dll",
+        "tasks/net7.0/NuGet.DependencyResolver.Core.dll",
+        "tasks/net7.0/NuGet.Frameworks.dll",
+        "tasks/net7.0/NuGet.LibraryModel.dll",
+        "tasks/net7.0/NuGet.Packaging.Core.dll",
+        "tasks/net7.0/NuGet.Packaging.dll",
+        "tasks/net7.0/NuGet.ProjectModel.dll",
+        "tasks/net7.0/NuGet.Protocol.dll",
+        "tasks/net7.0/NuGet.Versioning.dll",
+        "tasks/net7.0/Valleysoft.DockerCredsProvider.dll"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "Microsoft.NET.Build.Containers >= 7.0.401"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Lincoln\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\0-Fluxo-basico\\testedocker\\Projeto01\\Projeto01.csproj",
+      "projectName": "Projeto01",
+      "projectPath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\0-Fluxo-basico\\testedocker\\Projeto01\\Projeto01.csproj",
+      "packagesPath": "C:\\Users\\Lincoln\\.nuget\\packages\\",
+      "outputPath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\0-Fluxo-basico\\testedocker\\Projeto01\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Lincoln\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "dependencies": {
+          "Microsoft.NET.Build.Containers": {
+            "target": "Package",
+            "version": "[7.0.401, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[7.0.10, 7.0.10]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "linux-x64": {
+        "#import": []
+      }
+    }
+  }
+}

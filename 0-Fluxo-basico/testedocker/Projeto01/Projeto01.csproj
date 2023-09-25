@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<!--<PublishProfile>DefaultContainer</PublishProfile>
+	<ContainerImageName>projeto01</ContainerImageName>
+	<ContainerImageTag>1.0.0</ContainerImageTag>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.401" />
+  </ItemGroup>
+
+</Project>
