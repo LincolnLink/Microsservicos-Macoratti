@@ -236,13 +236,16 @@
 
  - Instala a extenção do mongoDB
 
- - 
-
 <blockquete>
 
                 MongoDB.Driver
  
 </blockquete>
+
+ ### Iniciando o projeto
+
+ - Inciando a classe Product, criando configuração de conexao, inciaindo interface do contexto
+ e implementando.
 
  - Cria a pasta "Entities" e a classe "Product".
 
@@ -306,19 +309,205 @@
  
 </blockquete>
 
+
+# NET - Criando Microsserviços : API Catalogo com MongoDB - II
+
+ - Cria uma pasta chamada "Repositories", e um arquivo chamado "IProductRepository".
+
+ - Task representa uma operação asyncrona.
+
+<blockquete>
+
+                public interface IProductRepository
+                {
+
+                Task<IEnumerable<Product>> GetProducts();
+                        
+                Task<Product> GetProduct(string id);
+
+                Task<IEnumerable<Product>> GetProductByName(string name);
+
+                Task<IEnumerable<Product>> GetProductByCategory(string categoryName);
+
+                Task CreateProduct(Product product);
+                Task<bool> UpdateProduct(Product product);
+                Task<bool> DeleteProduct(string id);
+
+                }
+ 
+</blockquete>
+
+ - Cria uma classe chamada "ProductRepository" para implementara interface "IProductRepository"
+
+ - No construtor faz uma injeção dedependencia do contexto.
+
+ - bota todos os metodos com o async.
+
+ - faz a implementação usando await, e usando metodos async.
+
  - 
 
 <blockquete>
 
+                public class ProductRepository : IProductRepository
+                {
+                private readonly ICatalogContext _context;
+                public ProductRepository(ICatalogContext context)
+                {
+                        _context = context;
+                }
+
+                public async Task CreateProduct(Product product)
+                {
+                        await _context.Products.InsertOneAsync(product);
+                }
+
+                public async Task<bool> DeleteProduct(string id)
+                {
+                        FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
+
+                        DeleteResult deleteResult = await _context.Products.DeleteOneAsync(filter);
+
+                        return deleteResult.IsAcknowledged
+                        && deleteResult.DeletedCount > 0;
+                }
+
+                public async Task<Product> GetProduct(string id)
+                {
+                        return await _context.Products.Find(p => p.Id == id).FirstOrDefaultAsync();
+                }
+
+                public async Task<IEnumerable<Product>> GetProductByCategory(string categoryName)
+                {
+                        FilterDefinition<Product> filter = Builders<Product>.Filter
+                        .Eq(p => p.Category, categoryName);
+
+                        return await _context.Products.Find(filter).ToListAsync();
+                }
+
+                public async Task<IEnumerable<Product>> GetProductByName(string name)
+                {
+                        FilterDefinition<Product> filter = Builders<Product>.Filter
+                        .ElemMatch(p => p.Name, name);
+
+                        return await _context.Products.Find(filter).ToListAsync();
+                }
+
+                public async Task<IEnumerable<Product>> GetProducts()
+                {
+                        return await _context.Products.Find(p => true).ToListAsync();
+                }
+
+                public async Task<bool> UpdateProduct(Product product)
+                {
+                        var updateResult = await _context.Products.ReplaceOneAsync(
+                        filter: g => g.Id == product.Id, replacement: product);
+
+                        return updateResult.IsAcknowledged
+                        && updateResult.ModifiedCount > 0;
+                }
+        }
  
+</blockquete>
+
+ - No arquivo "appsettings", cria uma definição para a string de conexão para o MongoDB.
+
+<blockquete>
+
+                "DatabaseSettings": {
+                "ConnectionString": "mongodb://localhost:27017",
+                "DatabaseName": "CatalogDb",
+                "CollectionName": "Products"    
+                },
+
+</blockquete>
+
+ - No asp.net core 7 não tem a classe startup, então é usado a classe program.cs para por a configuração da injeção de dependencia.
+
+ - No entanto criei um arquivo isolado para as configurações de injeção de dependencia.
+
+<blockquete>
+
+        namespace Catalogo.API.Configuration
+        {
+                public static class DependencyInjectionConfig
+                {
+                        public static IServiceCollection ResolveDependencies(this IServiceCollection services)
+                        {
+
+                        services.AddScoped<ICatalogContext, CatalogContext>();
+                        services.AddScoped<IProductRepository, ProductRepository>();
+
+                        return services;
+                        }
+                }
+        }
+
 </blockquete>
 
  - 
 
 <blockquete>
 
- 
 </blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
 
 
 
