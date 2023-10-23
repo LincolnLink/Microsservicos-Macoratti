@@ -445,61 +445,151 @@
 
 </blockquete>
 
- - 
+# NET - Criando Microsserviços : API Catalogo com MongoDB - III
+
+ - Criando o CatalogController, um CRUD no controller.
+
+ - Aplica a injeção de dependencia.
 
 <blockquete>
 
+        private readonly IProductRepository _repository;
+
+        public CatalogController(IProductRepository repository)
+        {
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository)); 
+        }
+
 </blockquete>
 
+ - A classe "ControllerBase", fornece varios recursos para requisições HTTP:
+  - BadRequest()
+  - NotFound()
+  - Ok()
+  - TryUpdateModelAsync()
+  - TryValidateModel()
+
+ - O atributo "ApiController" fornece outros recursos como:
+  - Valida o modelstate de modo automatico.
+  - Faz a inferencia de parametros bind source.
+  - Aciona automaticamente os erros de validação para o HTTP-400.
+  - Não é obrigado a definir atributos como frombody, fromroot, fromforne, from service no corpo dos metodos action.
+
+
+ - O atributo "[ ApiConventionTypeMatch(Type(DefaultApiConventions)) ] ":
+   - Define os tipos de retornos e código status.
+
+ - O atributo " [ ProducesResponseType ]" 
+  - Define tipos de valor e código de status.
+  - Ele fala que isso ja vem automatico mas mesmo assim usa. 
+
+
+<blockquete>
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        {
+        var products = await _repository.GetProducts();
+        return Ok(products);
+        }
+
+</blockquete>
+
+ - Buscando pelo id
+
+<blockquete>
+
+                [HttpGet("{id:length(24)}", Name = "GetProduct")]
+                [ProducesResponseType(StatusCodes.Status404NotFound)]
+                [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+                public async Task<ActionResult<Product>> GetProductById(string id)
+                {
+                var product = await _repository.GetProduct(id);
+                if(product is null)
+                {
+                        return NotFound();
+                }
+                return Ok(product);
+                }
+
+</blockquete>
+
+ - Buscando pela categoria
+
+<blockquete>
+
+                [Route("[action]/{category}", Name = "GetProductByCategory")]
+                [HttpGet]
+                [ProducesResponseType(StatusCodes.Status400BadRequest)]
+                [ProducesResponseType(StatusCodes.Status200OK, Type =  typeof(IEnumerable<Product>))]
+                public async Task<ActionResult<Product>> GetProductByCategory(string category)
+                {
+                if (category is null)
+                        return BadRequest("Invalid category");
+
+                var product = await _repository.GetProductByCategory(category);
+                
+                return Ok(product);
+                }
+
+</blockquete>
+
+ - Método que cria
+
+<blockquete>
+
+                [HttpPost]
+                [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+                [ProducesResponseType(StatusCodes.Status400BadRequest)]        
+                public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
+                {
+                if (product is null)
+                        return BadRequest("Invalid product");
+
+                await _repository.CreateProduct(product);
+
+                return CreatedAtRoute("GetProduct", new {id = product.Id}, product);
+                }
+
+</blockquete>
+
+ - Atualiza o valor, pode usar o "ProducesResponseType" ou o "ApiConventionMethod".
+
+<blockquete>
+
+                [HttpPut]
+                [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+                [ProducesResponseType(StatusCodes.Status400BadRequest)]
+                //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
+                public async Task<ActionResult<Product>> UpdateProduct([FromBody] Product product)
+                {
+                if (product is null)
+                        return BadRequest("Invalid product");            
+
+                return Ok(await _repository.UpdateProduct(product));
+                }
+
+</blockquete>
+
+ - Metodo que deleta.
+
+<blockquete>
+
+                [HttpDelete("{id:lengeth(24)}", Name = "DeleteProduct")]
+                [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+                public async Task<IActionResult> DeleteProductById(string id)
+                {
+                return Ok(await _repository.DeleteProduct(id));
+                }
+
+</blockquete>
 
  -
 
 <blockquete>
 
 </blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
 
  -
 
