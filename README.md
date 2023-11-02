@@ -585,7 +585,302 @@
 
 </blockquete>
 
+# NET - Criando Microsserviços : API Catalogo com MongoDB - IV
+
+ ### Configurando Docker
+
+  - Verificar o ambiente do Docker Desktop
+  - Dashboard
+  - Docker CLI (PowerShell)
+
+<blockquete>
+
+                docker --version
+                docker images
+                docker ps
+                docker container ks -a
+                docker volume ls
+                docker network ls
+                
+</blockquete>
+
+ ### Baixar imagem do mongo no Docker Hub.
+
+<blockquete>
+
+                docker pull mongo
+
+</blockquete>
+
+ ### Criar e executar o contêiner mongo. 
+  - run: faz o download das imagens, cria, inicializa e executa o contêiner.
+  - -d: indica o modo detached, que executa o contêiner em segundo plano.
+  - -p 27017:27017 - compartilha a porta 27017 do contêiner com a mesma porta do host
+  - name catalogo-mongo - define o nome do contêiner.
+  - mongo -nome da imagem usada para criar o contêiner.
+
+ OBS: poderia ter o nome container, mas ele ja entende que já é um container.
+ 
+<blockquete>
+
+                docker run -d -p 27017:27017 --name catalog-mongo mongo
+
+</blockquete>
+
+ - Alternativa
+
+<blockquete>
+
+                docker run -v ~/docker --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=expertostech -e MONGO_INITDB_ROOT_PASSWORD=@mongo123 mongo
+
+</blockquete>
+
+ ### Entra no contêiner Mongo e executa alguns comandos.
+
+  - exec -executa um comando em um contêniner em execução.
+  - -it: aciona o modo iterativo e adiciona um terminal.
+  - catalogo-mongo - define o nome do contêiner
+  - /bin/bash - obtém um shell bash.
+
+<blockquete>
+
+                docker exec -it catalog-mongo /bin/bash
+
+                mongo
+                show dbs
+                use ProductDb
+                db.createCollection('Products')
+                db.Products.insert ou db.Products.insertmany
+                db.Products.remove({})
+
+</blockquete>
+
+ ### OBS: Deve se usado o "mongosh" é a forma mais atualizada.
+
+ - https://www.mongodb.com/docs/mongodb-shell/install/
+
+ - Baixar e configurar a variavel de ambiente.
+
+<blockquete>
+
+                docker exec -it catalog-mongo mongosh
+
+</blockquete>
+
+ - Comandos
+
+<blockquete>
+                 show dbs
+
+                 // Cria banco
+                 db.createCollection('Products')
+
+                 //Cria tabela com valores.
+                 db.Products.insert({"Name":"Caderno", "Category":"Material Escolar", "Image":"caderno.jpg", "Prince":7})
+
+                 //Busca
+                 db.Products.find({}).pretty()
+
+                 // Remove
+                 db.Products.remove({})
+
+</blockquete>
+
+ ### Adicionando docker na aplicação
+
+ - Clica com botão direito no projeto, e escolhe, Add, depois dcoker support.
+
+  - "Docker support" para gerar arquivo "Dockerfile".
+  - "Container Orchesttrator support" para gerar o "Docker-Compose".
+
+ ### Dockerfile
+  
+  - O Docker cria imagens automaticamente lendo as instruções de um Dockerfile - um arquivo de texto que contém todos os comandos, em ordem, necessários para construir uma determinada imagem. 
+
+  - Criar imagem da aplicação ASP.NET Core Web, o ponto no final define o diretorio atual. 
+ 
+<blockquete>
+
+                docker build -t <nome_imagem> .
+
+</blockquete>
+
+ - Cria o container a partir da imagem
+
+<blockquete>
+
+                dcoker run <nome_container> <nome_image>
+
+</blockquete>
+
+
+# .NET - Criando Microsserviços : API Catalogo com MongoDB - V
+
+ - Orquestração com docker-compose.
+
+ ### Docker compose
+
+ - É uma ferramenta usada para descrever aplicações complexas e gerenciar contêineres, redes e volumes que essa aplicações exigem para funcionar.
+
+ - Usa um arquivo no formato YAML(extensão.yml) para configurar os serviços das aplicações.
+
+ - Com um único comando podemos criar e inicializar todos os serviços a partir desta configuração.
+
+ - Simplifica o processo de configuração e execução de aplicativos para que não tenhamos que digitar comandos complexos, o que pode levar a erros de configuração.
+
+ - docker-compose.yml
+
+<blockquete>
+
+                version:  "3.4"
+                services: Indica os serviços que serão criados Aqui definimos os contêineres usados e suasconfigurações.
+                volumes: Define os recrusos usados pelos serviços.
+                networks: Define os recrusos usados pelos serviços.
+
+</blockquete>
+
+ - docker-compose: processa o arquivo de composição.
+ - -f : especifica o nome do arquivo de composição.
+ - build : informa ao Docker para processar o arquivo.
+
+<blockquete>
+
+                docker-compose -f docker-compose.yml build
+
+</blockquete>
+
+ - Outros comandos do docker compose.
+
+<blockquete>4:54
+
+                docker-compose up -d : cria as imagens e executa os contêineres.
+                docker-compose build : cria as imagens.
+                docker-compose images : lista as imagens.
+                docker-compose stop : para os contêineres.
+                docker-compose run : executa os contêineres.
+                docker-compose down : para os serviços, e limpa os contêineres, redes e imagens.
+
+</blockquete>
+
+ - Gerar de forma automatica, usando o  visual studio 2019
+
+ - Opcao `Container Orchestrator Support`
+
+  - Criar o arquivo DockerFile no projeto.
+  - Criar o projeto docker-compose (docker-compose.dcproj)
+   - dockerignore
+   - docker-compose.yml
+   - docker-compose.override.yml(complementa os substitui as configuracoes.)
+
+- arquivo do `docker-compose.ylm`, foi adicionado informacoes do mongo e volumes
+
+<blockquete>
+
+                version: '3.4'
+
+                services:
+                  catalogdb:
+                    image: mongo
+
+                  catalogo.api:
+                    image: ${DOCKER_REGISTRY-}catalogoapi
+                    build:
+                      context: .
+                      dockerfile: Catalogo.API/Dockerfile
+
+                volumes:
+                  mongo_data:
+
+</blockquete>
+
+ - docker-compose.override.yml
+
+ - Cria um container pro catalogodb.
+ - Sempre restart.
+ - Define o mapeamento das portas.
+ - Mapea o volume.
+ - Na Api, define o ambiente que está trabalhando.
+ - Sobreescreva a DatabaseSettings!
+
+<blockquete>
+
+version: '3.4'
+
+services:  
+  catalogdb:
+    container_name: catalogdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db 
+
+  catalogo.api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
+    depends_on:
+     - catalogdb
+    ports:
+      - "8000:80"
+
+</blockquete>
+
+ - É importante sobreescrever, porq não existe mais o localhost, e sim a DatabaseSettings do docker.
+
+ ### Executando manualmente
+
+<blockquete>
+
+                docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+
+</blockquete>
+
+ - Antes de usar é sempre bom limpar primeiro o ambiente usando o comando o dashborard, pausa e deleta os container, depois seleciona todas as imagens e deleta.
+
+ - limpa também os volumes
+
+<blockquete>
+
+                docker volume rm $(docker volume ls q)
+
+</blockquete>
+
+ - 
+
+<blockquete>
+
+</blockquete>
+
+
+ - 
+
+<blockquete>
+
+</blockquete>
+
  -
+
+<blockquete>
+
+</blockquete>
+
+
+ - 
+
+<blockquete>
+
+</blockquete>
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ - 
 
 <blockquete>
 
