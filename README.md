@@ -861,11 +861,54 @@ services:
 
   - Basket.API, usando .NET core e docker.
   - Redis e Docker na parte do Banco.
- 
+
+ ### Objetivo
+
+  - Obter a cesta e os itens com o usuário.
+  - Atializar a cesta e os itens(inclui/remove item)
+  - Deletar a cesta
+  - Fazer o checkout da cesta
+
+  - GET, POST, DELETE, POST(Checkout): publica na fila Rabbitmq usando o Masstransit.
+  - ASP.NET Core Web API usando princípios REST, realiza operações CRUD com padrão Repository usando o Redis como meio de armazenamento com cache distribuído.
+
+  - Pesquisar depois, em outros videos do Macorati sobre Rabbitmq e Masstransit.
+
+ ### Redis
+
+  - Pode ser usado como chache distribuido ou mensagenria.
+
+   - DataStore na memória.
+   - Estruturas flexiveis de dados.
+   - Simplicidade e facilidade de uso.
+   - Replicação e persistência.
+   - Alta disponibilidade e escalabilidade.
+   - Extensibilidade.
+   - Suporte a linguagens.
+
+ - Funções
+
+  - Todos os dados residem na memória.
+  - Oferece uma grande variedade de estruturas.
+  - Reduz a qualidade de código necessária.
+  - Oferece suporte á replicação assíncrona.
+  - Cria soluções altamente disponíveis.
+  - Projeto de código aberto extensível.
+  - Funciona em varias lingagens de programação.
+
+ ### Criando o container Redis.
+
+  - Comandos, de como criar container e depois entrar dentro do Redis para manipular.
+
 <blockquete>
 
-</blockquete>
+                docker run --name local-redis -p 6379:6379 -d redis
 
+                docker exec -it local-redis sh
+
+                #redis-cli
+
+</blockquete>
 
  - 
 
