@@ -12,9 +12,9 @@ services:
   catalogo.api:
     container_name: catalog.api
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=mongodb://catalogdb:27017"
+     - ASPNETCORE_ENVIRONMENT=Development
+     - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
     depends_on:
      - catalogdb
     ports:
-      - "8000:80"
+     - "8000:80"

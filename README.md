@@ -820,6 +820,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
+      - "DatabaseSettings__ConnectionString=mongodb://catalogdb:27017"
     depends_on:
      - catalogdb
     ports:
@@ -847,7 +848,14 @@ services:
 
 </blockquete>
 
- - 
+ # .NET - Criando Microsserviços : API Basket com Redis - VI
+
+ # Criando outro projeto de API
+
+  - Basket.API, usando .NET core e docker.
+  - Redis e Docker na parte do Banco.
+
+  
 
 <blockquete>
 
