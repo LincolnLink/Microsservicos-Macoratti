@@ -1,8 +1,15 @@
 # Microsservicos-Macoratti
 
+
+ ![Alt text](image.png)
+
+
  - Estudo e pesquisa sobre micros serviços com ASP.NET 7 Core e Docker!
 
- - "Instalando o Linux no windown"
+ - "Instalando o Linux no windown".
+
+ - Fonte: https://www.youtube.com/watch?v=jap8tXIAMi4&list=PLJ4k1IC8GhW1UtPi9nwwW9l4TwRLR9Nxg
+
 
 <blockquete>
 
@@ -848,15 +855,13 @@ services:
 
 </blockquete>
 
- # .NET - Criando Microsserviços : API Basket com Redis - VI
+# .NET - Criando Microsserviços : API Basket com Redis - VI
 
- # Criando outro projeto de API
+ ### Criando outro projeto de API
 
   - Basket.API, usando .NET core e docker.
   - Redis e Docker na parte do Banco.
-
-  
-
+ 
 <blockquete>
 
 </blockquete>
