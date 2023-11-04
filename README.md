@@ -910,18 +910,40 @@ services:
 
 </blockquete>
 
- - Teste do git
+ - Para ver logs
 
 <blockquete>
 
+                docker logs local-redis
+
 </blockquete>
 
- -
+ - Comandos depois de executar o "#redis-cli".
 
 <blockquete>
 
+                set name bem-vindo
+                get name
+                ping
+                incr contador
+                get contador
+
 </blockquete>
 
+ ### Porque usar o Redis
+
+ - Ele é um chace distribuido, usado para um carrinho de compra, são dados temporarios.
+
+ - Usuario faz um request e realizando uma operação envolvendo a cesta de compras.
+ - A API verifica se o item esta no cache, se não estiver coloca o item no cache e assim ele poderá ser acessado no próximo request.
+ - O recurso é retornado para o usuário  a partir do cache ou de outra fonte.
+ 
+ ### Criando o projeto Basket.api
+
+ - Cria um projeto web API, cria uma entidade chamada "ShoppingCart", "BasketCheckout" e "ShoppingCartItem"
+
+
+# .NET - Criando Microsserviços : API Basket com Redis - VII
 
  - 
 
@@ -936,11 +958,124 @@ services:
 </blockquete>
 
 
- - 
+ -
 
 <blockquete>
 
 </blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
+
+ -
+
+<blockquete>
+
+</blockquete>
+
 
  -
 

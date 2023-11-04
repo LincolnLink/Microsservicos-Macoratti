@@ -1,0 +1,7 @@
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.csproj.AssemblyReference.cache
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.GeneratedMSBuildEditorConfig.editorconfig
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.AssemblyInfoInputs.cache
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.AssemblyInfo.cs
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.csproj.CoreCompileInputs.cache
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.MvcApplicationPartsAssemblyInfo.cs
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.MvcApplicationPartsAssemblyInfo.cache
