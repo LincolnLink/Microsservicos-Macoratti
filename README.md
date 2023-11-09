@@ -945,62 +945,178 @@ services:
 
 # .NET - Criando Microsserviços : API Basket com Redis - VII
 
+ - Configurar a integração do Redis com a API
+
+ - IDistributedCache: implementa os metodos do Redis.
+
+  - Get, GetAsync: Aceita uma chave do tipo string e recupera um item em cache como um array de bytes, se existir.
+  - Set, SetAsync: Adiciona um item (como um array de bytes) ao cache usando uma chave string.
+  - Refresh, RefreshAsync: Atualiza um item no cache com base em sua chave, redefinindo seu tempo limite de expiração deslizante(se houver).
+  - Remove, RemoveAsync: Remove um item de cache com base em sua chave de cadeira de caracteres.
+
+  ### Instalação do Redis
+
+<blockquete>
+
+                Package Manager - Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
+
+                NET CLI - dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis
+
+</blockquete>
+
+ - Configurar no método ConfigureServices da classe Startup a porta do redis disponível
+
+<blockquete>
+
+                services.AddStackExchangeRedisCache(options =>
+                {
+                        //options.Configuration = "localhost:6379";
+
+                        var teste = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
+                        options.Configuration = teste;
+                });
+
+</blockquete>
+
+ - No arquivo appSettings, bota a configuração.
+
+<blockquete>
+
+                {
+                        "CacheSettings": {
+                        "ConnectionString": "localhost:6379"
+                        }
+                }
+
+</blockquete>
+
+ - Cria a interface "IBasketRepository" na pasta repositories, depois cria a classe "BasketRepository", e o controle "BasketRepositoryController".
+
+<blockquete>
+
+                public interface IBasketRepository
+                {
+                        Task<ShoppingCart> GetBasket(string userName);
+                        Task<ShoppingCart> UpdateBasket(ShoppingCart basket);
+                        Task DeleteBasket(string userName);
+                }
+
+</blockquete>
+
+ - Implementando a interface.
+
+ - Retorna Task porque são metodos async.
+
+ ### ATENÇÃO: O metodo "_redisCache.GetStringAsync(userName);" retorna um array de bitys, por isso deve ser usado o "JsonSerializer.Deserialize< ShoppingCart>(basket);"
+
+ ### Para salvar deve Serializar porque o Redis trabalha com array de bytes.
+
+<blockquete>
+
+                public class BasketRepository : IBasketRepository
+                {
+                        // Está incluida no pacote.
+                        private readonly IDistributedCache _redisCache;
+
+                        public BasketRepository(IDistributedCache redisCache)
+                        {
+                                _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
+                        }
+
+                        public async Task<ShoppingCart?> GetBasket(string userName)
+                        {
+                                var basket = await _redisCache.GetStringAsync(userName);
+
+                                if(string.IsNullOrEmpty(basket))
+                                {
+                                return null;
+                                }
+
+                                return JsonSerializer.Deserialize<ShoppingCart>(basket);
+                        }
+
+                        public async Task<ShoppingCart> UpdateBasket(ShoppingCart basket)
+                        {
+                        //serializar porque rediz trabalha com array de bytes.
+                        await _redisCache.SetStringAsync(basket.UserName, JsonSerializer.Serialize(basket));
+
+                        return await GetBasket(basket.UserName);
+                        }
+
+                        public async Task DeleteBasket(string userName)
+                        {
+                                await _redisCache.RemoveAsync(userName);
+                        }
+                }
+               
+</blockquete>
+
+ - Cria a variavel que faz referencia ao repositorio, classe que implementa a interface.
+
+ - Para depois criar o contrutor com o botão direito do mouse, escolhando a validação de null
+
+ - Se for null ele cria uma cesta vazia com o nome do usuario.
+
+<blockquete>
+
+                        [Route("api/v1/[controller]")]
+                        [ApiController]
+                        public class BasketController : ControllerBase
+                        {
+                                private readonly IBasketRepository _repository;
+
+                                public BasketController(IBasketRepository repository)
+                                {
+                                        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+                                }
+
+                                [HttpGet("{userName}", Name = "GetBasket")]
+                                public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
+                                {
+                                        var basket = await _repository.GetBasket(userName);
+
+                                        return Ok(basket ?? new ShoppingCart(userName));
+                                }
+
+                                [HttpPut]
+                                public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
+                                {
+                                        return Ok(await _repository.UpdateBasket(basket));
+                                }
+
+                                [HttpDelete]
+                                public async Task<IActionResult> DeleteBasket(string userName)
+                                {
+                                        await _repository.DeleteBasket(userName);
+                                        return Ok();
+                                }
+                        }
+
+</blockquete>
+
+ - Na classe program aplica a injeção de dependencia
+
+<blockquete>
+
+
+                        builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
+</blockquete>
+
+# .NET - Criando Microsserviços : API Basket com Redis - VIII
+
+ - Levanta o container do redis.
+
+<blockquete>
+
+                docker run --name local-redis -p 6379:6379 -d redis
+
+                docker ps -a
+
+</blockquete>
+ 
+ - 5213
  - 
-
-<blockquete>
-
-</blockquete>
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
-
-<blockquete>
-
-</blockquete>
-
-
- -
 
 <blockquete>
 
