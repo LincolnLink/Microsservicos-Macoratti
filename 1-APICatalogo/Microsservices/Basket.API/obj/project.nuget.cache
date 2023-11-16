@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DC4magJTyvsRAQNuk149dqCJ8mEmDB5RVddK4kJtKVRX1x0e6dYYKau1oPe+YbiLUVsc83j5k+ak72QbgXkO3A==",
+  "dgSpecHash": "biUC+lmO+vd+eBlvUwOgZ13p+dbeDl3mDs/tOsQ3k2HZ1+EOG+BHY79fxvoIx4wqF9cD0PdzbVzHsBeQx+RgzA==",
   "success": true,
   "projectFilePath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\1-APICatalogo\\Microsservices\\Basket.API\\Basket.API.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.0\\pipelines.sockets.unofficial.2.2.0.nupkg.sha512",

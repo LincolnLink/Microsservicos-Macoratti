@@ -1116,30 +1116,57 @@ services:
 </blockquete>
  
  - 5213
- - 
+ - Executando a API e o redis corretamente.
+
+ ### Criando um container para a API e para o redis.
+
+ - docker stop local-redis
+ - docker rm local-redis
+
+ - Para e remove para poder orquestrar tudo.
+ - vai na API basket depois ADD, "Container Orchestrator Support", docker compose, linux, depois de carregar ele cria o dockerfile e configura o docker-compose.
+
+ - coloca o nome do container.
+ - defica a conexão do redis.
 
 <blockquete>
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=basketdb:6379" 
+    ports:
+      - "8001:80"
 
 </blockquete>
 
-
- -
+ - configura o docker-compose, colocando um serviço
 
 <blockquete>
+
+                basketdb:
+                   image: redis:alpine
 
 </blockquete>
 
-
- -
+ - Configura o serviço no overrrayd
 
 <blockquete>
+
+basketdb:
+  container_name: basketdb
+  restart: always
+  ports:
+    - "6379:6379"
 
 </blockquete>
 
-
- -
+ - Comando para orquestrar.
 
 <blockquete>
+
+                docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
 </blockquete>
 

@@ -49,3 +49,5 @@ P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Bask
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.pdb
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.genruntimeconfig.cache
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\ref\Basket.API.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.Properties.Resources.resources
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\obj\Debug\net7.0\Basket.API.csproj.GenerateResource.cache
