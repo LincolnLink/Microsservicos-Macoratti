@@ -1170,6 +1170,241 @@ basketdb:
 
 </blockquete>
 
+# .NET - Criando Microsserviços : API Discount com PostgreSQL - IX
+
+ - Essa 3° API, usa ASP.NET Core, PostGreSQL Npgsql( vamos usar o pgAdm, ferramenta o postgreSql), Dapper ORM,
+
+ - API que calcula os descontos. 
+
+ - Comando que cria a tabela no banco, no banco DiscountDb.
+
+<blockquete>
+
+                CREATE TABLE Coupon(
+                        ID SERIAL PRIMARY KEY NOT NULL,
+                        ProductName VARCHAR(24) NET NULL,
+                        Description TEXT,
+                        Amount INT
+                )
+
+</blockquete>
+
+ - Classe principal.
+
+<blockquete>
+
+                        Public Class Coupon
+                        {
+                                public int Id {get; set;}
+                                public string ProductName {get; set;}
+                                public string Description {get; set;}
+                                public int Amount {get; set;}
+                        }
+
+</blockquete>
+
+ - Pacotes usado no projeto
+
+<blockquete>
+
+                Install-Package Npgsql.
+                Install-Package Dapper.
+
+</blockquete>
+
+ - Cria a classe "DiscountRepository" e a interface "IDiscountRepository".
+
+ - Gera o construtor automatico com o botão direto do mouse, mas antes bota a propriedade "_configuration".
+
+ - Pode extrair o metodo com o botão direito do mouse.
+ 
+<blockquete>
+
+                public interface IDiscountRepository
+                {
+                        Task<Coupon> GetDiscount(string productName);
+                        Task<bool> CreateDiscount(Coupon coupon);
+                        Task<bool> UpdateDiscount(Coupon coupon);
+                        Task<bool> DeleteDiscount(string productName);
+                }
+
+</blockquete>
+ 
+<blockquete>
+                public class DiscountRepository : IDiscountRepository
+                {
+                        private readonly IConfiguration _configuration;
+
+                        public DiscountRepository(IConfiguration configuration)
+                        {
+                                _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+                        }
+
+                        private NpgsqlConnection GetConnectionPostgreSQL()
+                        {
+                                return new NpgsqlConnection(
+                                                _configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+                        }
+
+                        public async Task<Coupon> GetDiscount(string productName)
+                        {
+                                NpgsqlConnection connection = GetConnectionPostgreSQL();
+
+                                var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>
+                                ("SELECT * FROM Coupon WHERE ProductName = @ProductName", 
+                                new {productName = productName});
+
+                                if(coupon == null) 
+                                {
+                                return new Coupon
+                                {
+                                        ProductName = "No Discount",
+                                        Amount = 0,
+                                        Description = "No Discount Desc"
+                                };
+                                }
+
+                                return coupon;
+
+                        }
+                        
+                        public async Task<bool> CreateDiscount(Coupon coupon)
+                        {
+                                NpgsqlConnection connection = GetConnectionPostgreSQL();
+
+                                var affected = await connection.ExecuteAsync
+                                ("INSERT INTO Coupon (ProductName, Description, Amount)" +
+                                " VALUES (@ProductName, @Description, @Amount)",
+                                new
+                                {
+                                        ProductName = coupon.ProductName,
+                                        Description = coupon.Description,
+                                        Amount = coupon.Amount
+                                });
+
+                                if(affected == 0)
+                                {
+                                return false;
+                                }
+
+                                return true;
+                        }            
+
+                        public async Task<bool> UpdateDiscount(Coupon coupon)
+                        {
+                                NpgsqlConnection connection = GetConnectionPostgreSQL();
+
+                                var affected = await connection.ExecuteAsync
+                                ("UPDATE Coupon SET ProductName=@ProductName, Description = @Description," +
+                                " Amount = @Amount WHERE Id = @Id",
+                                new
+                                {
+                                        ProductName = coupon.ProductName,
+                                        Description = coupon.Description,
+                                        Amount = coupon.Amount,
+                                        Id = coupon.Id
+                                });
+
+                                if (affected == 0)
+                                {
+                                return false;
+                                }
+
+                                return true;
+                        }
+
+                        public async Task<bool> DeleteDiscount(string productName)
+                        {
+                                NpgsqlConnection connection = GetConnectionPostgreSQL();
+
+                                var affected = await connection.ExecuteAsync
+                                ("DELETE FROM Coupon WHERE ProductName" +
+                                " = @ProductName",
+                                new
+                                {
+                                        ProductName = productName                   
+                                });
+
+                                if (affected == 0)
+                                {
+                                return false;
+                                }
+
+                                return true;
+                        }
+
+                }
+</blockquete>
+
+ - Configuração da ConnectionString.
+
+<blockquete>
+
+        "DatabaseSettings": {
+                "ConnectionString":"Server=localhost;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+        },
+
+</blockquete>
+
+ - Cria o controle, e bota a propriedade "IDiscountRepository", cria o controlador usando o botão direito do mouse.
+ 
+<blockquete>
+
+                [Route("api/v1/[controller]")]
+                [ApiController]
+                public class DiscountController : ControllerBase
+                {
+                        private readonly IDiscountRepository _repository;
+
+                        public DiscountController(IDiscountRepository repository)
+                        {
+                                _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+                        }
+
+                        [HttpGet("{productName}", Name = "GetDiscount")]
+                        public async Task<ActionResult<Coupon>> GetDiscount(string productName)
+                        {
+                                var coupon = await _repository.GetDiscount(productName);
+                                return Ok(coupon);
+                        }
+
+                        [HttpPost]        
+                        public async Task<ActionResult<Coupon>> CreateDiscount([FromBody] Coupon coupon)
+                        {
+                                //if (coupon is null)
+                                //    return badrequest("invalid coupon");
+
+                                await _repository.CreateDiscount(coupon);
+                                return CreatedAtRoute("GetDiscount", new { productName = coupon.ProductName }, coupon);
+                        }
+
+                        [HttpPut]
+                        public async Task<ActionResult<Coupon>> UpdateDiscount([FromBody] Coupon coupon)
+                        {
+                                return Ok(await _repository.UpdateDiscount(coupon));
+                        }
+
+                        [HttpDelete("{productName}", Name = "DeleteDiscount")]        
+                        public async Task<ActionResult<bool>> DeleteDiscount(string productName)
+                        {
+                                return Ok(await _repository.DeleteDiscount(productName));
+                        }
+                }
+
+</blockquete>
+
+ - depois configura na classe Program a Injeção de dependencia
+
+<blockquete>
+
+                builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+
+</blockquete>
+
+# .NET - Criando Microsserviços : API Discount com PostgreSQL - X
+
+ - 
+
 
  -
 
@@ -1177,55 +1412,72 @@ basketdb:
 
 </blockquete>
 
-
  -
 
 <blockquete>
 
 </blockquete>
 
-
  -
 
 <blockquete>
 
 </blockquete>
-
-
  -
 
 <blockquete>
 
 </blockquete>
-
-
  -
 
 <blockquete>
 
 </blockquete>
-
-
  -
 
 <blockquete>
 
 </blockquete>
-
-
  -
 
 <blockquete>
 
 </blockquete>
-
-
  -
 
 <blockquete>
 
 </blockquete>
+ -
 
+<blockquete>
+
+</blockquete>
+ -
+
+<blockquete>
+
+</blockquete>
+ -
+
+<blockquete>
+
+</blockquete>
+ -
+
+<blockquete>
+
+</blockquete>
+ -
+
+<blockquete>
+
+</blockquete>
+ -
+
+<blockquete>
+
+</blockquete>
 
 
 

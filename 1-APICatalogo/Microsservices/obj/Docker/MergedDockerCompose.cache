@@ -1,5 +1,36 @@
 name: dockercompose16629831475252212908
 services:
+  basket.api:
+    build:
+      context: P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices
+      dockerfile: Basket.API/Dockerfile
+    container_name: basket.api
+    depends_on:
+      basketdb:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      CacheSettings:ConnectionString: basketdb:6379
+    image: basketapi
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8001"
+        protocol: tcp
+  basketdb:
+    container_name: basketdb
+    image: redis:alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 6379
+        published: "6379"
+        protocol: tcp
+    restart: always
   catalogdb:
     container_name: catalogdb
     image: mongo
