@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IaUARZaNeoNeYqJgXSd991ICLavOJi0ZckhmXV2UF28z1A+E6uGMxJyF/Fz6sEI6fnxmEynYa9HtdCZcQAyROA==",
+  "dgSpecHash": "c3kXXEJ2dc5L+PYl0FnuGdpYrbJiozTvjN9ghvb6hwhnL4HEtoRbklK7WJ2TcZMe7xRi0wUCs+L0ip3lTUIouQ==",
   "success": true,
   "projectFilePath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\1-APICatalogo\\Microsservices\\Discount.API\\Discount.API.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",

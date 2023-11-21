@@ -1403,28 +1403,94 @@ basketdb:
 
 # .NET - Criando Microsserviços : API Discount com PostgreSQL - X
 
- - 
+ - Cria o dockerfile, da um add na api, escolhe "suporte docker orquestrator".
+ - Ele atualiza o dockercompose.
+ - No arquivo dockerfile, cada FROM é um estagio diferente, e AS da nome a esse estagio.
+ - COPY faz copia de arquivos das etapas anteriores.
+ - No arquivo docker compose tem 4 fazes:
+  - Base: baixa a imagem do aspnet, WORKDIR é o nome do diretorio do trabalho do container, EXPOSE é a porta.
+  - build: executa o dotnet build.
+  - publish: publica a aplicação.
+  - final: copia o que foi gerado para a pasta de publish, executa a aplicação no container.
 
+ ### Ajustes no docker-compose.
 
- -
+  - Cria 2 serviços/imagen, postgre e pgAdmin.
+
+  - Documentação do postgre, explicando sobre a variavel de ambiente.
+  - https://hub.docker.com/_/postgres
+
+  - O volume do docker ele fica fora do container, podendo destruir os container, sem destruir os dados.
+  - Cria 2 volumes
 
 <blockquete>
 
+        services:
+          discountdb:
+            image: postgres
+
+          pgadmin:
+            image: dpage/pgadmin4
+
+        volumes:
+          mongo_data:
+          postgres_data:
+          pgadmin_data:
+
 </blockquete>
 
- -
+ ### Ajuste no docker-compose.override.yml
+
+ - inclui novas informações.
 
 <blockquete>
 
+                discountdb:
+                  container_name: discountdb
+                  environment:
+                    - POSTGRES_USER=admin
+                    - POSTGRES_PASSWORD=admin1234
+                    - POSTGRES_DB=DiscountDb
+                  restart: always
+                  ports:
+                    - "5432:5432"
+                  volumes:
+                    - postgres_data:/var/lib/postgresql/data
+
+
+                discount.api:
+                  container_name: discount.api
+                  environment:
+                    - ASPNETCORE_ENVIRONMENT=Development
+                    - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+                  depends_on:
+                    - discountdb
+                  ports:
+                    - "8002:80"
+
+                pgadmin:
+                  container_name: pgadmin
+                  environment:
+                    - PGADMIN_DEFAULT_EMAIL=admin@macoratti.com
+                    - PGADMIN_DEFAULT_PASSWORD=admin1234
+                  restart: always
+                  ports:
+                    - "5050:80"
+                  volumes:
+                    - pgadmin_data:/root/.pgadmin
+
 </blockquete>
 
- -
+ - executando as imagens, cria os volumes.
 
 <blockquete>
 
-</blockquete>
- -
+                docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
+</blockquete>
+
+ - entra no pgadmin, http://localhost:5050/browser/, loga usando os valores de usuario que foi definido no docker
+ 
 <blockquete>
 
 </blockquete>
