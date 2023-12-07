@@ -1481,7 +1481,7 @@ basketdb:
 
 </blockquete>
 
- - executando as imagens, cria os volumes.
+ - executando as imagens, cria os volumes.(OBS: dei um "docker-compose build" antes)
 
 <blockquete>
 
@@ -1494,14 +1494,29 @@ basketdb:
 <blockquete>
 
 </blockquete>
- -
+
+ - Entra no "http://localhost:5050/browser/" para acessar o banco.
+ - 
+
+ - codigo que cria a tabela
 
 <blockquete>
+
+                CREATE TABLE Coupon(
+                        Id SERIAL PRIMARY KEY,
+                        ProductName VARCHAR(24) NOT NULL,
+                        Description TEXT,
+                        Amount INT
+                );
 
 </blockquete>
- -
+
+ - Codigo que inseri os dados.
 
 <blockquete>
+
+                INSERT INTO Coupon(ProductName, Description, Amount)
+                VALUES('Caderno', 'Caderno Espiral'. 5);
 
 </blockquete>
  -
