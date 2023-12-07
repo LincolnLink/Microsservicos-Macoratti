@@ -1496,8 +1496,13 @@ basketdb:
 </blockquete>
 
  - Entra no "http://localhost:5050/browser/" para acessar o banco.
- - 
+ - admin@macorati.com
+ - admin1234
+        - add new server
+                - Name: DiscountServer
+                - Aba Connection: Host name: discountdb, username: admin, senha:admin1234
 
+ - No banco discountdb.
  - codigo que cria a tabela
 
 <blockquete>
