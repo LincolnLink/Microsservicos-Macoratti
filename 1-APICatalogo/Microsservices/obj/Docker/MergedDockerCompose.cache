@@ -67,9 +67,72 @@ services:
         target: 80
         published: "8000"
         protocol: tcp
+  discount.api:
+    build:
+      context: P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices
+      dockerfile: Discount.API/Dockerfile
+    container_name: discount.api
+    depends_on:
+      discountdb:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseSettings:ConnectionString: Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;
+    image: discountapi
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8002"
+        protocol: tcp
+  discountdb:
+    container_name: discountdb
+    environment:
+      POSTGRES_DB: DiscountDb
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_USER: admin
+    image: postgres
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+        volume: {}
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@macoratti.com
+      PGADMIN_DEFAULT_PASSWORD: admin1234
+    image: dpage/pgadmin4
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "5050"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: volume
+        source: pgadmin_data
+        target: /root/.pgadmin
+        volume: {}
 networks:
   default:
     name: dockercompose16629831475252212908_default
 volumes:
   mongo_data:
     name: dockercompose16629831475252212908_mongo_data
+  pgadmin_data:
+    name: dockercompose16629831475252212908_pgadmin_data
+  postgres_data:
+    name: dockercompose16629831475252212908_postgres_data

@@ -6,8 +6,12 @@ P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Catalogo.API.deps.json
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Catalogo.API.runtimeconfig.json
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Catalogo.API.exe
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Discount.API.deps.json
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Discount.API.runtimeconfig.json
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Discount.API.exe
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Basket.API.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Catalogo.API.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Discount.API.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Swashbuckle.AspNetCore.SwaggerGen.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Swashbuckle.AspNetCore.Swagger.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -15,6 +19,8 @@ P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\MongoDB.Driver.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\MongoDB.Bson.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\MongoDB.Driver.Core.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Npgsql.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Dapper.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Microsoft.Extensions.Options.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\MongoDB.Libmongocrypt.dll
@@ -25,6 +31,7 @@ P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Snappier.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Basket.API.pdb
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Catalogo.API.pdb
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\bin\Debug\Discount.API.pdb
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\obj\Debug\docker-compose.dcproj.CopyComplete

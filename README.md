@@ -1524,41 +1524,203 @@ basketdb:
                 VALUES('Caderno', 'Caderno Espiral'. 5);
 
 </blockquete>
+
+# .NET - Criando Microsserviços : API Discount com gRPC - XI
+
+ - Comunicação entre microserviço, gRPC é um outra alternativa alem do Rest full.
+
+ - A API Discount vai virar Grpc.
+
+ - É uma arquitetura RPC DE código aberto criada pelo Google para obter uma comunicação de alta velocidade entre microsserviço que permite a integração de serviços programados em diferentes linguagens.
+
+ - Usa o formato de mensagem protobuf(buffers de protocolo), que fornecem um formato de serialização altamente eficiente e com neutralidade de plataforma para serializar mensagens estruturadas que os serviços enviam entre si.
+
+ - Oferece suporte abrangente entre as pilhas de desenvolvimento mais populares, incluindo Java, JavaScript, C#, go, Swift e NodeJS.
+
+ - As APIs baseadas em RPC são ótimas para ações ou seja, pricedimentos ou comandos podendo ser uma alternativa mais eficiente do que as APIs REST.
+
+ ### Diferença entre APIs REST e gRPC:
+
+  - Formato de mensagem Protobuf(em vez de JSON / XML)
+  - Construido em HTTP2(comunicação bidirecional, mas rapido) em vez de HTTP1.1
+  - Geração de código nativo em vez de usar ferramentas de terceiros.
+  - Transmissão de mensagens muitas vezes mais rápida.
+  - Implementação mais lenta do que REST.
+
+ ### OBS: O gRPC ainda não foi amplamente adotado e a maioria das ferramentas de terceiros continua sem recursos integrados para compatibilidade de gRPC.
+
+ ### Como usar o gRPC na plataforma .NET
+
+  - A integração do gRPC com a plataforma .NET foi feita na versão 3.0 do .NET Core SDK.
+  - O SDK inclui ferramentas para roteamento de endpoint, IoC interno e registro em log.
+  - O servidor Web Kestrel de código aberto dá suporte a conexões HTTP/2.
+
+  - O Visual Studio 2019 versão 16.3 ou superior(com carga de trabalho de desenvolvimento web instalada)
+  - Visual Studio Code
+  - Ferramenta de linha de comando: CLI do dotnet.
+
+ ### Cria um projeto do tipo gRPC na solução.
+
+  - Na pasta Protos, tem os arquivos greet.proto, que são contratos, que são mensagem de clientes e servidor, nesse arquivo tem a definição dos serviços, deve está no cliente e no servidor.
+
+  - Na pasta services, fica os serviços, que tem varios recursos como a injeção de dependencia, registro, logger, autenticação autorização, ela implementa o arquivo "proto".
+
+  - Na classe program, tem uma configuração propria para o Grpc.
+
+  - No arquivo appsettings.json tem a indicação da configuração Kestrel para o Http2.
+
+  - Removeu o http do gRPC: https://localhost:7237;http://localhost:5111
+
+  - o http foi alterado para : http://localhost:5003
+
+# .NET - Criando Microsserviços : API Discount com gRPC - XII
+
+ - Instalar os pacotes Neget para o PostgreSQL e Dapper.
+ - Copiar a pasta Entities e a classe Coupon(alterar o namespace)
+ - Copiar a pasta Respeitories e as suas classes(alterar o namespace)
+ - Copiar a ConnectionString para o arquivo appsettings.json
+ - Registrar o serviço para o repositório na classe Startup.
+
+ ### Doc
+
+ - https://protobuf.dev/programming-guides/proto3/
+
+ ### Instala lib
+
+  - Dapper
+  - Npgsql  
+
+ ### Copia as pasta do Discount.API para o Discount.gRPC
+
+  - Copia a pasta Entities, e troca o nameespace.
+  - Faz o mesmo com a pasta Repositorio.
+  - Na classe program copia e cola a configuração da injeção de dependencia no projeto gRPC
+
+<blockquete>
+
+                builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+
+</blockquete>
+
+ - Copia e cola a configuração da ConnectionString no arquivo appSettings.
+
+<blockquete>
+
+                "DatabaseSettings": {
+                "ConnectionString": "Server=localhost;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+                },
+
+</blockquete>
+
+ ### Criar arquivos Proto e gerar as classes de serviço.
+
+  - Deleta o arquivo modelo da pasta protos e services.
+  - Comenta o mapeamento para o serviço no método configure da classe starup.
+  - Criar o arquivo Discount.proto na pasta Protos.
+  - Definir o serviço e as mensagens para realizar o CRUD.
+  - Ferar o código do servidor a partir do arquivo proto.
+
+ - Cria um arquivo do tipo proto.
+ 
+<blockquete>
+
+                        syntax = "proto3";
+
+                        option csharp_namespace = "Discount.Grpc.Protos";
+
+                        service DiscountProtoService{
+                                rpc GetDiscount(GetDiscountRequest) returns (CouponModel);
+
+                                rpc CreateDiscount(CreateDiscountRequest) returns (CouponModel);
+                                rpc UpdateDiscount(UpdateDiscountRequest) returns (CouponModel);
+                                rpc DeleteDiscount(DeleteDiscountRequest) returns (DeleteDiscountResponse);
+                        }
+
+                        message GetDiscountRequest {
+                                string productName = 1;
+                        }
+
+                        message CouponModel{
+                                int32 id = 1;
+                                string productName = 2;
+                                string description = 3;
+                                int32 amount = 4;
+                        }
+
+                        message CreateDiscountRequest{
+                                CouponModel coupon = 1;
+                        }
+
+                        message UpdateDiscountRequest{
+                                CouponModel coupon = 1;
+                        }
+
+                        message DeleteDiscountRequest{
+                                string productName = 1;
+                        }
+
+                        message DeleteDiscountResponse{
+                                bool success = 1;
+                        }
+
+</blockquete>
+
+ - linguagem neutra: proto3.
+
+ - Configuração : entra na propriedade do arquivo proto, na "Build Action" bota Protobuf compiler.
+
+ - No "gRPC Stub Class" bota o Server only, depois faz build.
+
+# NET - Criando Microsserviços : API Discount com gRPC - XIII
+
+ ### gRPC - Remote Procedure Call
+
+  - Ser mais rápido que o REST(baseado no HTTP/2) e usa uma Linguagem de definição de interfaces(IDL) conhecida como Protocol Buffers (protobuf) (Pode ser usado em diversas linguagens ao mesmo tempo).
+
+  - Protocol Buffers ou protobuf são métodos de serizlização/desserialização de dados que funcionam através da IDL:
+   - É agnóstico de plataforma
+   - Permite fazer a especificação em uma linguagem neutra (o próprio proto)
+   - Permite compilar o contrato em vários otros serviços
+   - Sendo apenas um descritivo de um serviço.
+ 
+  - O serviço gRPC é um conjunto de métodos(classe) que podem ser descrito com seus parâmetros de entradas e saídas.
+
+  - As mensagens seralizadas com o protobuf são enviadas no formato binário (mais rápida e menor uso de CPU).
+
+ ### Implementar os serviços gRPC(API gRPC)
+
+  - Criar classe DiscountService (DiscountController).
+  - Implementar os serviços gRPC descritos no arquivo Discount.proto.
+  - A classe DiscountService vai herda de DiscountProtoService.DiscountProtoServiceBase.
+  - Sobrescrever os métodos: GetDiscount(), CreateDiscount(), UpdateDiscount(), DeleteDiscount();
+  - Mapear o tipo Coupon(entidade) para CouponModel(Mensagem protobuf(tipo gRPC))
+  - Usar o AutoMapper(Instalar via Nuget e registrar o serviço) e definir mapeamento no projeto.
+  - Registrar o serviço da API gRPC no arquivo Startup(endpoints.MapGrpcService< DiscountService>();)
+
+
+
+<blockquete>
+
+</blockquete>
+
  -
 
 <blockquete>
 
 </blockquete>
+
  -
 
 <blockquete>
 
 </blockquete>
+
  -
 
 <blockquete>
 
 </blockquete>
- -
 
-<blockquete>
-
-</blockquete>
- -
-
-<blockquete>
-
-</blockquete>
- -
-
-<blockquete>
-
-</blockquete>
- -
-
-<blockquete>
-
-</blockquete>
  -
 
 <blockquete>
