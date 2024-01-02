@@ -1697,36 +1697,158 @@ basketdb:
   - Usar o AutoMapper(Instalar via Nuget e registrar o serviço) e definir mapeamento no projeto.
   - Registrar o serviço da API gRPC no arquivo Startup(endpoints.MapGrpcService< DiscountService>();)
 
+ ### Instala o AutoMapper DependencyInjection
 
+  - instala no projeto gRPC.
+
+<blockquete>
+
+        AutoMapper.Extensions.Microsoft.DependencyInjection
+
+</blockquete>
+
+ - Cria uma pasta chamada Mapper, depois uma classe chamada "DiscountProfile".
+ - Herda a classe Profiel.
+ - Configura o mapeamento.
+
+<blockquete>
+
+                using AutoMapper;
+                using Discount.Grpc.Entities;
+                using Discount.Grpc.Protos;
+
+                namespace Discount.Grpc.Mapper
+                {
+                public class DiscountProfile : Profile
+                {
+                        public DiscountProfile()
+                        {
+                        // ReverseMap siginifica que ele vai converter para os 2 lados
+                        CreateMap<Coupon, CouponModel>().ReverseMap();
+                        }
+                }
+                }
+
+</blockquete>
+
+ - Inclui na classe program a essa configuração.
+
+<blockquete>
+
+            builder.Services.AddAutoMapper(typeof(Program));
+
+</blockquete>
+
+ - Cra a classe "DiscountServices" na pasta services.
+ - Herda a classe ""
+ - Sobre escreva os métodos.
+ - Ultiliza o serviço do repositorio.
+ - Declara a variavel do repositorio e do auto mapaer, e depois cria o contrutor automatico.
+
+  - Exemplo do GetDiscount: 
+
+<blockquete>
+
+                        public class DiscountServices : DiscountProtoService.DiscountProtoServiceBase
+                        {
+                        private readonly IDiscountRepository _repository;
+                        private readonly IMapper _mapper;
+                        private readonly ILogger _logger;
+
+                        public DiscountServices(IDiscountRepository repository, IMapper mapper, ILogger logger)
+                        {
+                                _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+                                _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+                                _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+                        }
+
+                        public override async Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
+                        {
+                                var coupon = _repository.GetDiscount(request.ProductName);
+
+                                if (coupon == null)
+                                {
+                                throw new RpcException(new Status(StatusCode.NotFound,
+                                        $"Discount with ProductName = {request.ProductName} not found."));
+                                }
+
+                                var couponModel = _mapper.Map<CouponModel>(coupon);
+                                return couponModel;
+                        }
+                        }
+
+</blockquete>
+
+ - O resto das implementações está no arquivo.
+ - Configura o mapeamento do serviço gRPC na classe program.
+
+<blockquete>
+
+                app.MapGrpcService<DiscountServices>();
+
+</blockquete>
+
+ - 
 
 <blockquete>
 
 </blockquete>
 
- -
+ - 
 
 <blockquete>
 
 </blockquete>
-
- -
-
-<blockquete>
-
-</blockquete>
-
- -
+ - 
 
 <blockquete>
 
 </blockquete>
-
- -
+ - 
 
 <blockquete>
 
 </blockquete>
+ - 
 
+<blockquete>
+
+</blockquete>
+ - 
+
+<blockquete>
+
+</blockquete>
+ - 
+
+<blockquete>
+
+</blockquete>
+ - 
+
+<blockquete>
+
+</blockquete>
+ - 
+
+<blockquete>
+
+</blockquete>
+ - 
+
+<blockquete>
+
+</blockquete>
+ - 
+
+<blockquete>
+
+</blockquete>
+ - 
+
+<blockquete>
+
+</blockquete>
 
 
 

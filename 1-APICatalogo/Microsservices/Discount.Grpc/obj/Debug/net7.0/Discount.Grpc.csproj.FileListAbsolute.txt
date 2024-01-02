@@ -36,3 +36,5 @@ P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Disc
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Discount.Grpc\obj\Debug\net7.0\Discount.Grpc.pdb
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Discount.Grpc\obj\Debug\net7.0\Discount.Grpc.genruntimeconfig.cache
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Discount.Grpc\obj\Debug\net7.0\ref\Discount.Grpc.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Discount.Grpc\bin\Debug\net7.0\AutoMapper.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Discount.Grpc\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
