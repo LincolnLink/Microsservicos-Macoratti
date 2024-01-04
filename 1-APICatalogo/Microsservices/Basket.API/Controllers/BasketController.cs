@@ -27,6 +27,8 @@ namespace Basket.API.Controllers
         [HttpPost]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
+            //TODO: Comunicar com Discount.grpc e calcular os precos atuais
+            //dos produtos no carrinho de compras.
             return Ok(await _repository.UpdateBasket(basket));
         }
 

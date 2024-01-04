@@ -66,11 +66,7 @@ namespace Discount.Grpc.Services
             };
 
             return response;
-
         }
-
-
-
 
     }
 }

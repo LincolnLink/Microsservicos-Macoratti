@@ -5,6 +5,13 @@ P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Bask
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Basket.API.runtimeconfig.json
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Basket.API.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Basket.API.pdb
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Google.Protobuf.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Grpc.AspNetCore.Server.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Grpc.AspNetCore.Server.ClientFactory.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Grpc.Core.Api.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Grpc.Net.Client.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Grpc.Net.ClientFactory.dll
+P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Grpc.Net.Common.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 P:\Projetos e Estudos\Microsservicos-Macoratti\1-APICatalogo\Microsservices\Basket.API\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll

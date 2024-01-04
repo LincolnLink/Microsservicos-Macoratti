@@ -1788,7 +1788,38 @@ basketdb:
 
 </blockquete>
 
+# .NET - Criando Microsserviços : Consumindo a API Discount.Grpc - XIV
+
+ ### Connected Service do Visual Studio
+
+  - O recurso Connected Services ou Serviços Conectados do Visual Studio permite conectar uma aplicação a provedores de serviços que são executados na nuvem ou localmente automatizando várias etapas necessárias para conectar um projeto do Visual Studio a um serviço.
+
+  - O Visual studio Connected Services usa NSwag para gerar clientes fortemente tipados a partir de documentos de especificação OpenAPI e clientes ou servidores gRPC a partir de arquivos proto.
+
+  - Vamos usar este recurso para usar os serviços gRPC definidos no microsserviço Discount.Grpc para gerar um Client para a API Restful definida no microsserviço Basket.API.
+
+ ### Iniciando
+
+  - Compila o projeto Basket.APi, e Discount.gRPC. 
+
+  - No projeto Basket.API clica com o botão direito, escolhe a opção de adicionar, e depois escolhe a opção "serviço conectado"(conect serve).
+
+  - Vai aparecer uma tela:
+
+  ![Alt text](image-2.png)
+
+
+  - Nessa tela, escolhe no icone de +, da segunda opção que é "Referencias de serviço gRPC".
+
+  - OBS: DEVE ESCOLHER A OPÇÃO Client!
+
+  - Escolhe o gRPC, depois bota o caminho do arquivo proto, e escolhe o tipo Client, clica em concluir, e espera carregar.
+
+# .NET - Criando Microsserviços : Consumindo a API Discount.Grpc - XV
+
  - 
+
+ 
 
 <blockquete>
 
