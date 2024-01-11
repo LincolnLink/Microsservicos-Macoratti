@@ -1525,7 +1525,7 @@ basketdb:
 
 </blockquete>
 
-# .NET - Criando Microsserviços : API Discount com gRPC - XI
+# .NET - Criando Microsserviços : API Discount com gRPC - XI (Cria projeto gRPC)
 
  - Comunicação entre microserviço, gRPC é um outra alternativa alem do Rest full.
 
@@ -1573,7 +1573,7 @@ basketdb:
 
   - o http foi alterado para : http://localhost:5003
 
-# .NET - Criando Microsserviços : API Discount com gRPC - XII
+# .NET - Criando Microsserviços : API Discount com gRPC - XII (Copia a entity e repositorio, e cria o arquivo proto)
 
  - Instalar os pacotes Neget para o PostgreSQL e Dapper.
  - Copiar a pasta Entities e a classe Coupon(alterar o namespace)
@@ -1669,9 +1669,9 @@ basketdb:
 
  - Configuração : entra na propriedade do arquivo proto, na "Build Action" bota Protobuf compiler.
 
- - No "gRPC Stub Class" bota o Server only, depois faz build.
+ - No "gRPC Stub Class" bota o Server only, depois faz build.(IMPORTANTE)
 
-# NET - Criando Microsserviços : API Discount com gRPC - XIII
+# NET - Criando Microsserviços : API Discount com gRPC - XIII (Implementa o proto, criando o arquivo DiscountServices e cria o mapeamento)
 
  ### gRPC - Remote Procedure Call
 
@@ -1687,15 +1687,22 @@ basketdb:
 
   - As mensagens seralizadas com o protobuf são enviadas no formato binário (mais rápida e menor uso de CPU).
 
- ### Implementar os serviços gRPC(API gRPC)
+ ### Implementar os serviços gRPC(projeto gRPC), explicação do que irar fazer.
 
-  - Criar classe DiscountService (DiscountController).
+  - Criar classe DiscountServices (DiscountController).
   - Implementar os serviços gRPC descritos no arquivo Discount.proto.
   - A classe DiscountService vai herda de DiscountProtoService.DiscountProtoServiceBase.
   - Sobrescrever os métodos: GetDiscount(), CreateDiscount(), UpdateDiscount(), DeleteDiscount();
   - Mapear o tipo Coupon(entidade) para CouponModel(Mensagem protobuf(tipo gRPC))
   - Usar o AutoMapper(Instalar via Nuget e registrar o serviço) e definir mapeamento no projeto.
   - Registrar o serviço da API gRPC no arquivo Startup(endpoints.MapGrpcService< DiscountService>();)
+  
+<blockquete>
+
+        app.MapGrpcService<DiscountServices>();
+
+</blockquete>
+
 
  ### Instala o AutoMapper DependencyInjection
 
@@ -1739,8 +1746,10 @@ basketdb:
 
 </blockquete>
 
+ ### execução
+
  - Cra a classe "DiscountServices" na pasta services.
- - Herda a classe ""
+ - Herda a classe "DiscountProtoService.DiscountProtoServiceBase"
  - Sobre escreva os métodos.
  - Ultiliza o serviço do repositorio.
  - Declara a variavel do repositorio e do auto mapaer, e depois cria o contrutor automatico.
@@ -1788,7 +1797,7 @@ basketdb:
 
 </blockquete>
 
-# .NET - Criando Microsserviços : Consumindo a API Discount.Grpc - XIV
+# .NET - Criando Microsserviços : Consumindo a API Discount.Grpc - XIV (Usa o recurso conect serve, na Basket.API que é o cliente).
 
  ### Connected Service do Visual Studio
 
@@ -1815,34 +1824,103 @@ basketdb:
 
   - Escolhe o gRPC, depois bota o caminho do arquivo proto, e escolhe o tipo Client, clica em concluir, e espera carregar.
 
-# .NET - Criando Microsserviços : Consumindo a API Discount.Grpc - XV
+# .NET - Criando Microsserviços : Consumindo a API Discount.Grpc - XV (Cria o arquivo DiscountGrpcService, no projeto Basket.API, que é o projeto que consome, projeto cliente)
 
- - 
+ - Realizar a comunicação com o serviço Grpc para obter o cupom de desconto para cada produto e calcular o proço final.
+ - Realizar a comunicação entre dois microsserviços: BasketAPI e Discount.Grpc
 
+ - 1: Criar a classe DiscountGrpcService para encapsular a API Client que geramos na aula anterior.
+ - 2: Injetar a classe DiscountProtoService.DiscountProtoServiceClient.
+ - 3: Criar um request passando o nome do produto.
+ - 4: Obter o cupom de desconto usando o método GetDiscountAsync() para o request criado.
  
 
+ ### Cria o arquivo "DiscountGrpcService", que vai fazer requisição para a outra API.
+
+  - Com esse serviço, cria o metodo get para obter o desconto, passando o nome do produto.
+
 <blockquete>
+
+                        namespace Basket.API.GrpcServices
+                        {
+                                public class DiscountGrpcService
+                                {
+                                        private readonly DiscountProtoService.DiscountProtoServiceClient _discountProtoService;
+
+                                        public DiscountGrpcService(DiscountProtoService.DiscountProtoServiceClient discountProtoService)
+                                        {
+                                        _discountProtoService = discountProtoService ?? throw new ArgumentNullException(nameof(discountProtoService));
+                                        }
+
+                                        public async Task<CouponModel> GetDiscount(string productName)
+                                        {
+                                        var discountRequest = new GetDiscountRequest { ProductName = productName };
+
+                                        return await _discountProtoService.GetDiscountAsync(discountRequest);
+
+                                        }
+                                }
+                        }
 
 </blockquete>
 
- - 
+ - Depois no controlador do projeto Basket.API, no método update, deve ser chamado o metodo get que foi criado, para obter o desconto do produto.
+
+ - Primeiro bota a instancia no construtor:
 
 <blockquete>
+
+                private readonly IBasketRepository _repository;
+                private readonly DiscountGrpcService _discountGrpcService;
+
+                public BasketController(IBasketRepository repository, DiscountGrpcService discountGrpcService)
+                {
+                _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+                _discountGrpcService = discountGrpcService;
+                }
 
 </blockquete>
- - 
+
+ - Cria um for no metodo update para poder dar o desconto para todos os itens que for atualizado no carrinho.
 
 <blockquete>
+
+                [HttpPost]
+                public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
+                {
+                        //TODO: Comunicar com Discount.grpc e calcular os precos atuais
+                        //dos produtos no carrinho de compras.
+
+                        foreach (var item in basket.Items)
+                        {
+                                var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
+                                item.Price -= coupon.Amount;
+                        }
+
+                        return Ok(await _repository.UpdateBasket(basket));                                
+                }
 
 </blockquete>
- - 
+
+ - Faz o registro do serviço e a API Client em Basket.API na classe Program.cs
 
 <blockquete>
+
+                builder.Services.AddScoped<DiscountGrpcService>();
+                builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
+                options => options.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]
+                ));
+
 
 </blockquete>
- - 
+
+ - Configuração do AppSetings
 
 <blockquete>
+
+                "GrpcSettings": {
+                "DiscountUrl": "http://localhost:5003"
+                },
 
 </blockquete>
  - 

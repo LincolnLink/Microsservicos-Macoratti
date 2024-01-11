@@ -1,4 +1,6 @@
+using Basket.API.GrpcServices;
 using Basket.API.Repositories;
+using Discount.Grpc.Protos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
+builder.Services.AddScoped<DiscountGrpcService>();
+
+var rota = builder.Configuration["GrpcSettings:DiscountUrl"];
+
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
+    options => options.Address = new Uri(rota));
 
 builder.Services.AddDistributedMemoryCache();
 
