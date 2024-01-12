@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[2.49.0, )"
             },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.4, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[8.0.1, )"

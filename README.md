@@ -3,13 +3,17 @@
 
  ![Alt text](image.png)
 
+ - Estudo focado em estrutura de microserviço, não é um projeto completo com telas(FrontEnd) e CRUD completo.
+ - Ficou faltando a parte do RabbitMQ e Ocelot, vou está estudando na 2° playlist de videos e postando em outro repositorio. 
 
- - Estudo e pesquisa sobre micros serviços com ASP.NET 7 Core e Docker!
+ - Estudo e pesquisa sobre micros serviços com ASP.NET 7 Core e Docker!, o video não usa .NET 7 mas eu convertir usando a documentação.
+.
+ - Fonte da 1° playlist: https://www.youtube.com/watch?v=ubCvfws1m4A&t=139s
 
- - "Instalando o Linux no windown".
+ - Fonte da 2° playlist: https://www.youtube.com/watch?v=jap8tXIAMi4&list=PLJ4k1IC8GhW1UtPi9nwwW9l4TwRLR9Nxg
 
- - Fonte: https://www.youtube.com/watch?v=jap8tXIAMi4&list=PLJ4k1IC8GhW1UtPi9nwwW9l4TwRLR9Nxg
 
+ - "Instalando o Linux no windown"
 
 <blockquete>
 
@@ -1923,22 +1927,52 @@ basketdb:
                 },
 
 </blockquete>
- - 
+
+# .NET - Criando Microsserviços : Conteinerizando a API Discount.Grpc - XVI
+
+ ### Resumo
+
+ - Criar o arquivo Dockerfile para o microsserviço : Discount.Grpc
+ - Ajustar o arquivo docker-compose.override.yml definindo as configurações do projeto Discount.Grpc
+ - Ajustar a configuração do serviço basket.api para permitir a comunicação com o serviço discount.grpc no contêiner
+
+ ### Configuração do arquivo docker-compose.override.yml
 
 <blockquete>
 
+                discount.grpc:
+                  container_name: discount.grpc
+                  environment:
+                    - ASPNETCORE_ENVIRONMENT=Development
+                    - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+                  depends_on:
+                    - discountdb
+                  ports:
+                    - "8003:80"
+
 </blockquete>
- - 
+
+ - Nova configuração do basket.api, colocar no environment: 
 
 <blockquete>
 
+        - "GrpcSettings:DiscountUrl=discount.grpc" 
+
 </blockquete>
- - 
+
+ - Cria todas as imagens e builda novamente.
 
 <blockquete>
 
+                docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
+
 </blockquete>
- - 
+
+ - No final do video é mostrado links para complementar o projeto.
+
+ - https://www.youtube.com/watch?v=q6uYIkCzS18
+
+ -  Finalizando estudo sobre microserviço e docker, apenas para ter uma noção, não é um projeto completo.
 
 <blockquete>
 

@@ -1,8 +1,17 @@
 using Basket.API.GrpcServices;
 using Basket.API.Repositories;
 using Discount.Grpc.Protos;
+using Microsoft.Extensions.DependencyInjection;
+using System.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Carrega as configurações do appsettings.json
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+// Obtém o valor de "DiscountUrl"
+var discountUrl = builder.Configuration.GetSection("GrpcSettings:DiscountUrl").Value;
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -13,10 +22,9 @@ builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 builder.Services.AddScoped<DiscountGrpcService>();
 
-var rota = builder.Configuration["GrpcSettings:DiscountUrl"];
 
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
-    options => options.Address = new Uri(rota));
+    options => options.Address = new Uri(discountUrl));
 
 builder.Services.AddDistributedMemoryCache();
 
