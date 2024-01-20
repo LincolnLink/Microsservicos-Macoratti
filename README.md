@@ -1986,9 +1986,27 @@ basketdb:
  - Docker
  - .NET6
 
-- Comandos
+- Comandos para o VScode
 
 ![Alt text](image-3.png)
+
+
+ # Criando
+
+  - Cria a solução em branco chamada: VShop.
+  - Cria o projeto WEB.API com nome: VShop.ProductApi.
+  - Cria a pasta models, com as classe: Product e Category.
+  - Cria as propriedades de cada uma(está no projeto), depois cria as propriedades de navegação, essas propriedades não vai ser modeladas no banco.
+  - Cria a classe "AppDbContext" que herda de DbContext, bota a configuração de mapeamento do objeto relacional.
+  - Configura a string de conexão.
+
+  ![Alt text](image-4.png)
+
+  - Configura a string de conexao, na classe program.
+
+  
+
+
 
 <blockquete>
 
