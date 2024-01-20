@@ -1974,9 +1974,26 @@ basketdb:
 
  -  Finalizando estudo sobre microserviço e docker, apenas para ter uma noção, não é um projeto completo.
 
+# Criando uma loja virtual usando microsserviços - I
+
+- Não considere migrar para microsserviços a menos que você já tenha um sistema que seja muito complexo para gerenciar como um monolito.
+
+- Instala: 
+ - MySQL
+ - VScode
+ - Asp.Net
+ - Entoty FrameworkCore
+ - Docker
+ - .NET6
+
+- Comandos
+
+        ![Alt text](image-3.png)
+
 <blockquete>
 
 </blockquete>
+
  - 
 
 <blockquete>
