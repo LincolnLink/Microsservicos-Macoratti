@@ -1988,7 +1988,7 @@ basketdb:
 
 - Comandos
 
-        ![Alt text](image-3.png)
+![Alt text](image-3.png)
 
 <blockquete>
 
