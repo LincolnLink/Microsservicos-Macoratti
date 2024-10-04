@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5Dj0QlgAeAc7t5x1mx8tUtYI/Ar9vnVK+YbjMDy53JutENNKIvXhtpx3cZDmCGLaDP4KXgw0f63AACNZyu81wg==",
+  "dgSpecHash": "8VuhC0zyd2QI1B+RR5wHi2k0RrjicgmEvdDQvXnUBL8ZWIe1V/YH/NGyHBeGiJic8Io/vA5tjLEukaGY3bjt5g==",
   "success": true,
   "projectFilePath": "P:\\Projetos e Estudos\\Microsservicos-Macoratti\\1-APICatalogo\\Microsservices\\Basket.API\\Basket.API.csproj",
   "expectedPackageFiles": [
@@ -47,7 +47,11 @@
     "C:\\Users\\Lincoln\\.nuget\\packages\\system.security.cryptography.protecteddata\\5.0.0\\system.security.cryptography.protecteddata.5.0.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\system.security.permissions\\5.0.0\\system.security.permissions.5.0.0.nupkg.sha512",
     "C:\\Users\\Lincoln\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
-    "C:\\Users\\Lincoln\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
+    "C:\\Users\\Lincoln\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.15\\microsoft.windowsdesktop.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.15\\microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.15\\microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Lincoln\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.15\\microsoft.netcore.app.host.win-x64.7.0.15.nupkg.sha512"
   ],
   "logs": []
 }
